@@ -1,0 +1,26 @@
+BOW_100_KNN <- BOW_50_index_top100;
+CH_100_KNN <- CH_50_index_top100;
+CM55_100_KNN <- CM55_index_top100;
+CORR_100_KNN <- CORR_index_top100;
+EDH_100_KNN <- EDH_index_top100;
+WT_100_KNN <- WT_index_top100;
+
+BOW_100KNN_concepts <- Train_50_labels_vec[BOW_100_KNN,];
+CH_100KNN_concepts <- Train_50_labels_vec[CH_100_KNN,];
+CM55_100KNN_concepts <- Train_50_labels_vec[CM55_100_KNN,];
+CORR_100KNN_concepts <- Train_50_labels_vec[CORR_100_KNN,];
+EDH_100KNN_concepts <- Train_50_labels_vec[EDH_100_KNN,];
+WT_100KNN_concepts <- Train_50_labels_vec[WT_100_KNN,];
+
+n_class <- length(BOW_100KNN_concepts[1,]);
+num_concept_per_imgs <- 5;
+K_NN <- 50;
+img_labels <- matrix(0, 1, n_class)
+
+inter_joint_list <- rbind(BOW_100KNN_concepts[1:K_NN,],CH_100KNN_concepts[1:K_NN,],CM55_100KNN_concepts[1:K_NN,], CORR_100KNN_concepts[1:K_NN,],EDH_100KNN_concepts[1:K_NN,],WT_100KNN_concepts[1:K_NN,]);
+out_labels <- colSums(inter_joint_list);
+
+a <- sort(out_labels,decreasing = TRUE, index.return = TRUE);
+ind_sort <- sort$ix;
+img_labels[ind_sort[1:num_concept_per_imgs]] <- 1;
+

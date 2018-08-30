@@ -1,0 +1,29 @@
+> setwd("/home/thaovu/Downloads/NUS_WID_Low_Level_Features/Low_Level_Features")
+Warning message:
+R graphics engine version 12 is not supported by this version of RStudio. The Plots tab will be disabled until a newer version of RStudio is installed. 
+> X <- read.csv("BoW_Train_int.dat")
+> setwd("/home/thaovu/Downloads/convert2R")
+> X_Labels <- read.csv("Labels_Train.csv")
+> rw(X)
+Error in rw(X) : could not find function "rw"
+> rm(X)
+> setwd("/home/thaovu/Downloads/NUS_WID_Low_Level_Features/Low_Level_Features")
+> X <- read.table("BoW_Train_int.dat")
+> n_concepts <- col(X_Labels)
+> help("row")
+> help("col")
+> rm(n_concepts)
+> ncol(X_Labels)
+[1] 81
+> n_concepts <- ncol(X_Labels);
+> Train_BOW_50 <- c();
+> Num_img_concept <- c();
+> for(i in 1: n_concepts)
++ {}
+> for(i in 1: n_concepts){}
+> for(i in 1: n_concepts){}
+> i<- 1;
+> concept_ID <- (X_Labels[,c(1)])[X_Labels == 1];
+> rm(concept_ID)
+> labs <- X_Labels[,c(1)];
+> X_Labels[,c(1)]

@@ -1,0 +1,12 @@
+l1_dist <- function(p1,p2)
+{
+  dmat <- matrix(0,length(p1[,1]),length(p2[,1]));
+  for (i in 1:length(p1[,1]))
+  {
+    temp <- abs(repmat(p1[i,,drop = FALSE],length(p2[,1],1))-p2);
+    for(j in 1:length(temp[1,]))
+    {
+      dmat[i,j] <- sum(temp[,j]);
+    }
+  }
+}

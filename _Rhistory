@@ -1,0 +1,27 @@
+2+3
+q<4
+3>6
+i=3
+i
+help("seq")
+help("plot")
+install.packages("ggplot2")
+plot(sin, -pi, 2*pi)
+setwd("/home/thaovu/Downloads/convert2R");
+X_Labels <- read.csv("Labels_Test");
+X_Labels <- read.csv("Labels_Test.csv");
+setwd("/home/thaovu/Downloads/NUS_WID_Low_Level_Features/Low_Level_Features")
+X <- read.table("BoW_Train_int.dat");
+View(X_Labels)
+rm(X_Labels)
+setwd("/home/thaovu/Downloads/convert2R")
+X_Labels <- read.csv("Lables_Train.csv")
+X_Labels <- read.csv("Labels_Train.csv")
+n_concepts <- length(row(X_Labels))
+n <- length(col(X_Labels))
+rm(n)
+rm(n_concepts)
+help("length")
+nrow(X_Labels)
+n_concepts <- ncol()
+n_concepts <- ncol(X_Labels)

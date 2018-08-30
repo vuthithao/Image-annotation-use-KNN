@@ -1,0 +1,15 @@
+#Y <- img
+X_labels <- Train_BOW_labels_50;
+sort_index <- BOW_index_top100;
+K_NN <- 50;
+n_class <- length(BOW_100KNN_concepts[1,]);
+img_labels <- matrix(0, 1, n_class);
+num_concept_per_imgs <- 5;
+
+K_ind <- sort_index [,1:K_NN];
+out_labels <- colSums(X_labels[K_ind,]);
+
+a <- sort(out_labels,decreasing = TRUE, index.return = TRUE);
+ind_sort <- sort$ix;
+
+img_labels[ind_sort[1:num_concept_per_imgs]] <- 1;;

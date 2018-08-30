@@ -1,0 +1,16 @@
+library(R.matlab);
+setwd ("/home/thaovu/Downloads/convert2R/train_50");
+a <- readMat('Train_BOW_50.mat');
+X <- a$Train.BOW.50;
+a <- readMat('Train_BOW_labels_50.mat');
+X_labels <- a$Train.BOW.labels.50;
+#Y <- Img
+
+mat <- rbind(Y,X);
+d <- dist(mat, upper=TRUE, diag=TRUE, method="manhattan");
+m <- as.matric(d);
+Dis <- m[1,2:length(m[1,]),drop = FALSE];
+
+a <- sort(Dis, index.return = TRUE);
+sort_ind <- a$ix;
+BOW_50_index_top100 <- sort_index[1:100];

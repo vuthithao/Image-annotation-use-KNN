@@ -1,0 +1,157 @@
+#----------------------top100-------------------------------
+
+#top100_BoW
+##install.packages('R.matlab')
+library(R.matlab);
+setwd ("/home/thaovu/Downloads/convert2R/train_50");
+a <- readMat('Train_BOW_50.mat');
+X <- a$Train.BOW.50;
+a <- readMat('Train_BOW_labels_50.mat');
+X_labels <- a$Train.BOW.labels.50;
+#Y <- Img
+#setwd('...')
+#read
+setwd("/home/thaovu/Downloads/NUS_WID_Low_Level_Features/Low_Level_Features");
+a <- read.table("BoW_Test_int.dat");
+Y <- a[1,, drop = FALSE];
+
+mat <- rbind(Y,X);
+d <- dist(mat, upper=TRUE, diag=TRUE, method="manhattan");
+m <- as.matric(d);
+Dis <- m[1,2:length(m[1,]),drop = FALSE];
+
+a <- sort(Dis, index.return = TRUE);
+sort_ind <- a$ix;
+BOW_50_index_top100 <- sort_index[1:100];
+BOW_50_index_top100 <- as.matrix(BOW_50_index_top100);
+BOW_50_index_top100 <- t(matrix(BOW_50_index_top100));
+
+#top100_CH
+
+setwd ("/home/thaovu/Downloads/convert2R/train_50");
+a <- readMat('Train_CH_50.mat');
+X <- a$Train.CH.50;
+#Y <- Img
+setwd("/home/thaovu/Downloads/NUS_WID_Low_Level_Features/Low_Level_Features");
+a <- read.table("Test_Normalized_CH.dat");
+Y <- a[1,, drop = FALSE];
+
+mat <- rbind(Y,X);
+d <- dist(mat, upper=TRUE, diag=TRUE, method="manhattan");
+m <- as.matrix(d);
+Dis <- m[1,2:length(m[1,]),drop = FALSE];
+
+a <- sort(Dis, index.return = TRUE);
+sort_ind <- a$ix;
+CH_50_index_top100 <- sort_index[1:100];
+CH_50_index_top100 <- as.matrix(CH_50_index_top100);
+CH_50_index_top100 <- t(matrix(CH_50_index_top100));
+
+#top100_CORR
+setwd ("/home/thaovu/Downloads/convert2R/train_50");
+a <- readMat('Train_CORR_50.mat');
+X <- a$Train.CH.50;
+#Y <- Img
+setwd("/home/thaovu/Downloads/NUS_WID_Low_Level_Features/Low_Level_Features");
+a <- read.table("Test_Normalized_CORR.dat");
+Y <- a[1,, drop = FALSE];
+
+mat <- rbind(Y,X);
+d <- dist(mat, upper=TRUE, diag=TRUE, method="manhattan");
+m <- as.matric(d);
+Dis <- m[1,2:length(m[1,]),drop = FALSE];
+
+a <- sort(Dis, index.return = TRUE);
+sort_ind <- a$ix;
+CORR_50_index_top100 <- sort_index[1:100];
+CORR_50_index_top100 <- as.matrix(CORR_50_index_top100);
+CORR_50_index_top100 <- t(matrix(CORR_50_index_top100));
+
+#top100_CM55
+setwd ("/home/thaovu/Downloads/convert2R/train_50");
+a <- readMat('Train_CM55_50.mat');
+X <- a$Train.CH.50;
+#Y <- Img
+setwd("/home/thaovu/Downloads/NUS_WID_Low_Level_Features/Low_Level_Features");
+a <- read.table("Test_Normalized_CM55.dat");
+Y <- a[1,, drop = FALSE];
+
+mat <- rbind(Y,X);
+d <- dist(mat, upper=TRUE, diag=TRUE, method="manhattan");
+m <- as.matric(d);
+Dis <- m[1,2:length(m[1,]),drop = FALSE];
+
+a <- sort(Dis, index.return = TRUE);
+sort_ind <- a$ix;
+CM55_50_index_top100 <- sort_index[1:100];
+CM55_50_index_top100 <- as.matrix(CM55_50_index_top100);
+CM55_50_index_top100 <- t(matrix(CM55_50_index_top100));
+
+#top100_EDH
+setwd ("/home/thaovu/Downloads/convert2R/train_50");
+a <- readMat('Train_EDH_50.mat');
+X <- a$Train.CH.50;
+#Y <- Img
+setwd("/home/thaovu/Downloads/NUS_WID_Low_Level_Features/Low_Level_Features");
+a <- read.table("Test_Normalized_EDH.dat");
+Y <- a[1,, drop = FALSE];
+
+mat <- rbind(Y,X);
+d <- dist(mat, upper=TRUE, diag=TRUE, method="manhattan");
+m <- as.matric(d);
+Dis <- m[1,2:length(m[1,]),drop = FALSE];
+
+a <- sort(Dis, index.return = TRUE);
+sort_ind <- a$ix;
+EDH_50_index_top100 <- sort_index[1:100];
+EDH_50_index_top100 <- as.matrix(EDH_50_index_top100);
+EDH_50_index_top100 <- t(matrix(EDH_50_index_top100));
+
+#top100_WT
+setwd ("/home/thaovu/Downloads/convert2R/train_50");
+a <- readMat('Train_WT_50.mat');
+X <- a$Train.CH.50;
+#Y <- Img
+setwd("/home/thaovu/Downloads/NUS_WID_Low_Level_Features/Low_Level_Features");
+a <- read.table("Test_Normalized_WT.dat");
+Y <- a[1,, drop = FALSE];
+
+mat <- rbind(Y,X);
+d <- dist(mat, upper=TRUE, diag=TRUE, method="manhattan");
+m <- as.matric(d);
+Dis <- m[1,2:length(m[1,]),drop = FALSE];
+
+a <- sort(Dis, index.return = TRUE);
+sort_ind <- a$ix;
+WT_50_index_top100 <- sort_index[1:100];
+WT_50_index_top100 <- as.matrix(WT_50_index_top100);
+WT_50_index_top100 <- t(matrix(WT_50_index_top100));
+
+#------------------------gan nhan----------------------------------
+
+BOW_100_KNN <- BOW_50_index_top100;
+CH_100_KNN <- CH_50_index_top100;
+CM55_100_KNN <- CM55_50_index_top100;
+CORR_100_KNN <- CORR_50_index_top100;
+EDH_100_KNN <- EDH_50_index_top100;
+WT_100_KNN <- WT_50_index_top100;
+
+BOW_100KNN_concepts <- X_labels[BOW_100_KNN,];
+CH_100KNN_concepts <- X_labels[CH_100_KNN,];
+CM55_100KNN_concepts <- X_labels[CM55_100_KNN,];
+CORR_100KNN_concepts <- X_labels[CORR_100_KNN,];
+EDH_100KNN_concepts <- X_labels[EDH_100_KNN,];
+WT_100KNN_concepts <- X_labels[WT_100_KNN,];
+
+n_class <- length(BOW_100KNN_concepts[1,]);
+num_concept_per_imgs <- 5;
+K_NN <- 50;
+img_labels <- matrix(0, 1, n_class)
+
+inter_joint_list <- rbind(BOW_100KNN_concepts[1:K_NN,],CH_100KNN_concepts[1:K_NN,],CM55_100KNN_concepts[1:K_NN,], CORR_100KNN_concepts[1:K_NN,],EDH_100KNN_concepts[1:K_NN,],WT_100KNN_concepts[1:K_NN,]);
+out_labels <- colSums(inter_joint_list);
+
+a <- sort(out_labels,decreasing = TRUE, index.return = TRUE);
+ind_sort <- sort$ix;
+img_labels[ind_sort[1:num_concept_per_imgs]] <- 1;
+

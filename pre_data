@@ -1,0 +1,39 @@
+setwd("/home/thaovu/Downloads/NUS_WID_Low_Level_Features/Low_Level_Features");
+X <- read.table("BoW_Train_int.dat");
+setwd("/home/thaovu/Downloads/convert2R");
+X_Labels <- read.csv("Labels_Train.csv");
+
+n_concepts <- ncol(X_Labels);
+Train_BOW_50 <- c();
+Num_img_concept <- c();
+
+for(i in 1:n_concepts)
+{
+  a <- which(X_Labels[,i,drop = FALSE] == 1, arr.ind = TRUE );
+  Concept_ID <- a[,1,drop = FALSE];
+  Num_img_concept <- rbind (Num_img_concept , length(Concept_ID[ , 1]));
+  Concept_data <- X[Concept_ID,,drop = FALSE];
+  if (length(Concept_ID[ , 1]) >50 )
+  {
+    a <- kmeans(Concept_data,50);
+    Center_BOW <- a$centers;
+  }
+  
+  else
+    Center_BOW <- Concept_data;
+  Train_BOW_50 <- rbind (Train_BOW_50 , Center_BOW);
+}
+
+#buid Train_50_labels
+Num_center_kmeans <- Num_img_concept;
+Num_center_kmeans[Num_center_kmeans>50] <- 50;
+Train_BOW_50_labels <-c();
+for (i in 1:length(Num_center_kmeans))
+{
+  temps <- matrix(0, Num_center_kmeans[i],n_concepts);
+  temps[,i] <- 1;
+  Train_BOW_50_labels <- rbind(Train_BOW_50_labels,temps);
+}
+write.table(Train_BOW_50_labels, file = "Train_BOW_50_labels.txt", row.names = FALSE, col.names = FALSE)
+
+
